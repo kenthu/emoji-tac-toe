@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cli": "ts-node src/cli.ts",
+    "test": "jest",
+    "ts-node": "ts-node"
   },
   "dependencies": {
     "@types/node": "20.4.4",
