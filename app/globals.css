@@ -18,10 +18,37 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
     rgb(var(--background-start-rgb));
+}
+
+/* Add border to the table and set cell spacing */
+table {
+  border-collapse: collapse;
+  width: 400px;
+  height: 400px;
+  border: 2px solid #000; /* Adjust border width and color as needed */
+}
+
+/* Add border to the table cells (td) */
+td {
+  border: 1px solid #000; /* Adjust border width and color as needed */
+  padding: 8px; /* Add cell padding for spacing content inside cells */
+  text-align: center;
+  font-size: 100px;
+  width: 133px;
+  height: 133px;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: green; /* Change this to the color you prefer */
+  color: #fff; /* Change this to the text color you prefer */
+  text-align: center;
+  padding: 10px;
+  height: 200px;
+  z-index: 100;
 }
