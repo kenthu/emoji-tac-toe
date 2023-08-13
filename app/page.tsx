@@ -1,4 +1,4 @@
-import { BoardView } from '@/components/BoardView';
+import BoardView from '@/components/BoardView';
 import React from 'react';
 
 export default function Home() {

@@ -15,7 +15,7 @@ const emojiForCell = (cell: Cell): string => {
   }
 };
 
-export const BoardView = (): JSX.Element => {
+export default function BoardView(): JSX.Element {
   const { board, markCell, winner } = useBoard();
   const { player, togglePlayer } = useGame();
 
@@ -53,4 +53,4 @@ export const BoardView = (): JSX.Element => {
       </tbody>
     </table>
   );
-};
+}
