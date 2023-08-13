@@ -1,6 +1,6 @@
 'use client';
 
-import { Cell, ColumnIndex, RowIndex, useBoard } from '@/hooks/useBoard';
+import { Cell, Col, Row, useBoard } from '@/hooks/useBoard';
 import { useGame } from '@/hooks/useGame';
 import React from 'react';
 
@@ -20,7 +20,7 @@ export const BoardView = (): JSX.Element => {
   const { player, togglePlayer } = useGame();
 
   const handleMove = React.useCallback(
-    (row: RowIndex, col: ColumnIndex): void => {
+    (row: Row, col: Col): void => {
       const executedMove = markCell(player, row, col);
       if (executedMove) {
         togglePlayer();
