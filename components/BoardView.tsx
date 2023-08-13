@@ -16,17 +16,20 @@ const emojiForCell = (cell: Cell): string => {
 };
 
 export const BoardView = (): JSX.Element => {
-  const { board, markCell } = useBoard();
+  const { board, markCell, winner } = useBoard();
   const { player, togglePlayer } = useGame();
 
   const handleMove = React.useCallback(
     (row: Row, col: Col): void => {
+      if (winner) {
+        return;
+      }
       const executedMove = markCell(player, row, col);
       if (executedMove) {
         togglePlayer();
       }
     },
-    [markCell, player, togglePlayer],
+    [winner, markCell, player, togglePlayer],
   );
 
   return (

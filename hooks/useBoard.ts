@@ -77,5 +77,5 @@ export const useBoard = () => {
     return true;
   };
 
-  return { board, markCell };
+  return { board, markCell, winner };
 };
