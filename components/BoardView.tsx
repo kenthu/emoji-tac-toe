@@ -1,7 +1,8 @@
 import { produce } from 'immer';
-import { Board, Col, Player, Row } from '@/lib/types';
 import React, { Dispatch, SetStateAction } from 'react';
+
 import { playerEmoji } from '@/lib/emoji';
+import { Board, Col, Player, Row } from '@/lib/types';
 
 interface Props {
   board: Board;

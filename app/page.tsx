@@ -1,10 +1,11 @@
 'use client';
 
+import React from 'react';
+
 import BoardView from '@/components/BoardView';
 import { STARTING_PLAYER } from '@/lib/constants';
 import type { Board, Player } from '@/lib/types';
 import { winnerForBoard } from '@/lib/winner';
-import React from 'react';
 
 export default function Home() {
   const [board, setBoard] = React.useState<Board>([
@@ -25,7 +26,7 @@ export default function Home() {
       setWinner(maybeWinner);
       alert(`Player ${maybeWinner} has won!`);
     }
-  }, [winner, winnerForBoard, board, setWinner]);
+  }, [winner, setWinner, board]);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
