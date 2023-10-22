@@ -1,19 +1,10 @@
 import { BoardCell } from '@/components/BoardCell';
-import { playerEmoji } from '@/lib/emoji';
-import { useGame } from '@/lib/redux';
+import { GameControls } from '@/components/GameControls';
 
 export default function BoardView(): JSX.Element {
-  const { currentPlayer, resetBoard, winner } = useGame();
-
   return (
     <div>
-      {winner && (
-        <div>
-          Winner: {playerEmoji(winner)}
-          <button onClick={resetBoard}>Reset</button>
-        </div>
-      )}
-      {!winner && <h2>Next turn: {playerEmoji(currentPlayer)}</h2>}
+      <GameControls />
       <table cellSpacing="2" border={10} className="text-xl">
         <tbody>
           <tr>

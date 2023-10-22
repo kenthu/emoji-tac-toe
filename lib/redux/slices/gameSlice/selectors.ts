@@ -24,3 +24,19 @@ export const getWinner = createSelector(getBoard, (board): Player | null => {
 
 export const isCellOccupied = (state: ReduxState, row: Row, col: Col): boolean =>
   !!state.game.board[row][col].player;
+
+export const getAreAllCellsOccupied = createSelector(
+  getBoard,
+  (board): boolean =>
+    !!(
+      board[0][0].player &&
+      board[0][1].player &&
+      board[0][2].player &&
+      board[1][0].player &&
+      board[1][1].player &&
+      board[1][2].player &&
+      board[2][0].player &&
+      board[2][1].player &&
+      board[2][2].player
+    ),
+);
