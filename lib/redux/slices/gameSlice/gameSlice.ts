@@ -33,12 +33,16 @@ export const gameSlice = createSlice({
       const { player, row, col } = action.payload;
       state.board[row][col].player = player;
     },
-    togglePlayer: (state) => {
-      state.currentPlayer = state.currentPlayer === 1 ? 2 : 1;
-    },
     recordWin: (state, action: PayloadAction<Player>) => {
       const player = action.payload;
       state.wins[player]++;
+    },
+    resetBoard: (state) => {
+      state.board = INITIAL_BOARD;
+      state.currentPlayer = STARTING_PLAYER;
+    },
+    togglePlayer: (state) => {
+      state.currentPlayer = state.currentPlayer === 1 ? 2 : 1;
     },
   },
 });

@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { gameSlice } from './gameSlice';
 import { getBoard, getCurrentPlayer, getWinner } from './selectors';
 import { handleMove as handleMoveThunk } from './thunks';
 
@@ -20,10 +21,15 @@ export const useGame = () => {
     [currentPlayer, dispatch],
   );
 
+  const resetBoard = React.useCallback(() => {
+    dispatch(gameSlice.actions.resetBoard());
+  }, [dispatch]);
+
   return {
     board,
     currentPlayer,
     handleMove,
+    resetBoard,
     winner,
   };
 };
