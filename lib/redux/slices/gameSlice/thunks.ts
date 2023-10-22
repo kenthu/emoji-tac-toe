@@ -1,6 +1,7 @@
+import { gameSlice } from './gameSlice';
+import { hasWinner, isCellOccupied } from './selectors';
+
 import type { ReduxThunkAction } from '@/lib/redux';
-import { gameSlice } from '@/lib/redux/slices/gameSlice/gameSlice';
-import { hasWinner, isCellOccupied } from '@/lib/redux/slices/gameSlice/selectors';
 import type { Col, Player, Row } from '@/lib/types';
 
 export const handleMove =

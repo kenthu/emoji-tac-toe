@@ -1,4 +1,4 @@
-import { gameSlice } from '@/lib/redux/slices';
+import { gameSlice } from './slices';
 
 export const reducer = {
   game: gameSlice.reducer,

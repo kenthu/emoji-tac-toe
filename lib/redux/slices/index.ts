@@ -1,1 +1,1 @@
-export * from '@/lib/redux/slices/gameSlice';
+export * from './gameSlice';

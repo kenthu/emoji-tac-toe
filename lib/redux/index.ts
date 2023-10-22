@@ -1,2 +1,2 @@
-export * from '@/lib/redux/store';
-export * from '@/lib/redux/slices';
+export * from './store';
+export * from './slices';
