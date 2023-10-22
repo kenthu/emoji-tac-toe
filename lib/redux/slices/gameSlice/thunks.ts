@@ -4,7 +4,7 @@ import { hasWinner, isCellOccupied } from '@/lib/redux/slices/gameSlice/selector
 import type { Col, Player, Row } from '@/lib/types';
 
 export const handleMove =
-  (player: Player | null, row: Row, column: Col): ReduxThunkAction =>
+  (player: Player | null, row: Row, col: Col): ReduxThunkAction =>
   (dispatch, getState) => {
     if (player === null) {
       return;
@@ -14,10 +14,10 @@ export const handleMove =
     if (hasWinner(state)) {
       return;
     }
-    if (isCellOccupied(state, row, column)) {
+    if (isCellOccupied(state, row, col)) {
       return;
     }
 
-    dispatch(gameSlice.actions.markCell({ player, row, column }));
+    dispatch(gameSlice.actions.markCell({ player, row, col }));
     dispatch(gameSlice.actions.togglePlayer());
   };

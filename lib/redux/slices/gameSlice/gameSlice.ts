@@ -6,7 +6,7 @@ import type { Board, Col, Player, Row } from '@/lib/types';
 interface MarkCellActionProps {
   player: Player;
   row: Row;
-  column: Col;
+  col: Col;
 }
 
 export interface GameSliceState {
@@ -26,8 +26,8 @@ export const gameSlice = createSlice({
   initialState,
   reducers: {
     markCell: (state, action: PayloadAction<MarkCellActionProps>) => {
-      const { player, row, column } = action.payload;
-      state.board[row][column].player = player;
+      const { player, row, col } = action.payload;
+      state.board[row][col].player = player;
     },
     togglePlayer: (state) => {
       state.currentPlayer = state.currentPlayer === 1 ? 2 : 1;

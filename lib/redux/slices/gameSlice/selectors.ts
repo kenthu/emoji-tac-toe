@@ -23,5 +23,5 @@ export const getWinner = (state: ReduxState): Player | null => {
 
 export const hasWinner = (state: ReduxState): boolean => !!getWinner(state);
 
-export const isCellOccupied = (state: ReduxState, row: Row, column: Col): boolean =>
-  !!state.game.board[row][column].player;
+export const isCellOccupied = (state: ReduxState, row: Row, col: Col): boolean =>
+  !!state.game.board[row][col].player;
