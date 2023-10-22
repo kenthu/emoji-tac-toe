@@ -41,14 +41,14 @@ td {
 }
 
 .footer {
-  position: fixed;
+  /* position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: green; /* Change this to the color you prefer */
-  color: #fff; /* Change this to the text color you prefer */
+  background-color: green;
+  color: #fff;
   text-align: center;
   padding: 10px;
   height: 200px;
-  z-index: 100;
+  z-index: 100; */
 }

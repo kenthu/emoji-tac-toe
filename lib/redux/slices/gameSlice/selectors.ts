@@ -1,12 +1,14 @@
 import { createSelector } from '@reduxjs/toolkit';
 
 import { WIN_PATTERNS } from '@/lib/constants';
-import type { ReduxState } from '@/lib/redux';
+import type { GameSliceState, ReduxState } from '@/lib/redux';
 import type { Col, Row, Player, Board } from '@/lib/types';
 
 export const getBoard = (state: ReduxState): Board => state.game.board;
 
 export const getCurrentPlayer = (state: ReduxState): Player | null => state.game.currentPlayer;
+
+export const getWins = (state: ReduxState): GameSliceState['wins'] => state.game.wins;
 
 export const getWinner = createSelector(getBoard, (board): Player | null => {
   for (const [position1, position2, position3] of WIN_PATTERNS) {

@@ -1,7 +1,13 @@
 import React from 'react';
 
 import { gameSlice } from './gameSlice';
-import { getAreAllCellsOccupied, getBoard, getCurrentPlayer, getWinner } from './selectors';
+import {
+  getAreAllCellsOccupied,
+  getBoard,
+  getCurrentPlayer,
+  getWinner,
+  getWins,
+} from './selectors';
 import { handleMove as handleMoveThunk } from './thunks';
 
 import { useDispatch, useSelector } from '@/lib/redux';
@@ -14,6 +20,7 @@ export const useGame = () => {
   const currentPlayer = useSelector(getCurrentPlayer);
   const winner = useSelector(getWinner);
   const areAllCellsOccupied = useSelector(getAreAllCellsOccupied);
+  const wins = useSelector(getWins);
 
   const handleMove = React.useCallback(
     (row: Row, col: Col): void => {
@@ -33,5 +40,6 @@ export const useGame = () => {
     handleMove,
     resetBoard,
     winner,
+    wins,
   };
 };
