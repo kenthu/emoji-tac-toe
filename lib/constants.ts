@@ -1,6 +1,12 @@
-import { Position } from '@/lib/types';
+import type { Board, Position } from '@/lib/types';
 
 export const STARTING_PLAYER = 1;
+
+export const INITIAL_BOARD: Board = [
+  [{ player: null }, { player: null }, { player: null }],
+  [{ player: null }, { player: null }, { player: null }],
+  [{ player: null }, { player: null }, { player: null }],
+];
 
 // prettier-ignore
 export const WIN_PATTERNS: Array<[Position, Position, Position]> = [
