@@ -22,7 +22,5 @@ export const getWinner = createSelector(getBoard, (board): Player | null => {
   return null;
 });
 
-export const hasWinner = (state: ReduxState): boolean => !!getWinner(state);
-
 export const isCellOccupied = (state: ReduxState, row: Row, col: Col): boolean =>
   !!state.game.board[row][col].player;
