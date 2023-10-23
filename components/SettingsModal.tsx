@@ -1,15 +1,17 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { Fragment, useState } from 'react';
+import React from 'react';
+
+import { useSettings } from '@/lib/redux';
 
 export const SettingsModal = (): JSX.Element => {
-  const [open, setOpen] = useState(true);
+  const { closeSettingsModal, isModalOpen } = useSettings();
 
   return (
-    <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={setOpen}>
+    <Transition.Root show={isModalOpen} as={React.Fragment}>
+      <Dialog as="div" className="relative z-10" onClose={closeSettingsModal}>
         <Transition.Child
-          as={Fragment}
+          as={React.Fragment}
           enter="ease-in-out duration-500"
           enterFrom="opacity-0"
           enterTo="opacity-100"
@@ -24,7 +26,7 @@ export const SettingsModal = (): JSX.Element => {
           <div className="absolute inset-0 overflow-hidden">
             <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
               <Transition.Child
-                as={Fragment}
+                as={React.Fragment}
                 enter="transform transition ease-in-out duration-500 sm:duration-700"
                 enterFrom="translate-x-full"
                 enterTo="translate-x-0"
@@ -34,7 +36,7 @@ export const SettingsModal = (): JSX.Element => {
               >
                 <Dialog.Panel className="pointer-events-auto relative w-screen max-w-md">
                   <Transition.Child
-                    as={Fragment}
+                    as={React.Fragment}
                     enter="ease-in-out duration-500"
                     enterFrom="opacity-0"
                     enterTo="opacity-100"
@@ -46,7 +48,7 @@ export const SettingsModal = (): JSX.Element => {
                       <button
                         type="button"
                         className="relative rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
-                        onClick={() => setOpen(false)}
+                        onClick={closeSettingsModal}
                       >
                         <span className="absolute -inset-2.5" />
                         <span className="sr-only">Close panel</span>
