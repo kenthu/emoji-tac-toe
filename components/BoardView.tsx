@@ -2,7 +2,7 @@ import { BoardCell } from '@/components/BoardCell';
 
 export default function BoardView(): JSX.Element {
   return (
-    <table cellSpacing="2" border={10} className="text-xl">
+    <table className="h-96 w-96 border-2 border-solid border-black text-xl">
       <tbody>
         <tr>
           <BoardCell row={0} col={0} />

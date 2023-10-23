@@ -5,13 +5,18 @@ export const Scoreboard = (): JSX.Element => {
   const { wins } = useGame();
 
   return (
-    <div>
-      <div>
-        Player {playerEmoji(1)}: {wins[1]}
+    <section>
+      <header>
+        <h2 className="text-2xl">Score</h2>
+      </header>
+      <div className="flex justify-between text-lg">
+        <div>{playerEmoji(1)}</div>
+        <div>{wins[1]}</div>
       </div>
-      <div>
-        Player {playerEmoji(2)}: {wins[2]}
+      <div className="flex justify-between text-lg">
+        <div>{playerEmoji(2)}</div>
+        <div>{wins[2]}</div>
       </div>
-    </div>
+    </section>
   );
 };

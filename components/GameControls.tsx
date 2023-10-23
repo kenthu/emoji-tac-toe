@@ -4,27 +4,32 @@ import { useGame } from '@/lib/redux';
 export const GameControls = (): JSX.Element => {
   const { areAllCellsOccupied, currentPlayer, resetBoard, winner } = useGame();
 
+  let status: string;
+  let showResetButton = false;
+
   if (winner) {
-    return (
-      <div>
-        <div>Winner: {playerEmoji(winner)}</div>
-        <div>
-          <button onClick={resetBoard}>Reset</button>
-        </div>
-      </div>
-    );
+    status = `Winner: ${playerEmoji(winner)}`;
+    showResetButton = true;
+  } else if (areAllCellsOccupied) {
+    status = 'Tie!';
+    showResetButton = true;
+  } else {
+    status = `Turn: ${playerEmoji(currentPlayer)}`;
   }
 
-  if (areAllCellsOccupied) {
-    return (
-      <div>
-        <div>Tie!</div>
+  return (
+    <section>
+      <h2 className="text-3xl">{status}</h2>
+      {showResetButton && (
         <div>
-          <button onClick={resetBoard}>Reset</button>
+          <button
+            className="my-2 rounded bg-blue-500 px-3 py-1 text-white hover:bg-blue-700"
+            onClick={resetBoard}
+          >
+            Reset
+          </button>
         </div>
-      </div>
-    );
-  }
-
-  return <h2>Next turn: {playerEmoji(currentPlayer)}</h2>;
+      )}
+    </section>
+  );
 };
