@@ -5,6 +5,7 @@ import React from 'react';
 import BoardView from '@/components/BoardView';
 import { GameControls } from '@/components/GameControls';
 import { Scoreboard } from '@/components/Scoreboard';
+import { SettingsModal } from '@/components/SettingsModal';
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
         <Scoreboard />
       </section>
       <BoardView />
+      <SettingsModal />
     </main>
   );
 }
