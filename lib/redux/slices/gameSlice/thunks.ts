@@ -1,5 +1,5 @@
 import { gameSlice } from './gameSlice';
-import { getWinner, isCellOccupied } from './selectors';
+import { getAreAllCellsOccupied, getWinner, isCellOccupied } from './selectors';
 
 import type { ReduxThunkAction } from '@/lib/redux';
 import type { Col, Player, Row } from '@/lib/types';
@@ -27,7 +27,7 @@ export const handleMove =
     const newState = getState();
     if (getWinner(newState)) {
       dispatch(gameSlice.actions.recordWin(player));
-    } else {
+    } else if (!getAreAllCellsOccupied(newState)) {
       dispatch(gameSlice.actions.togglePlayer());
     }
   };
