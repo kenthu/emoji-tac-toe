@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { Toaster } from 'react-hot-toast';
 
 import BoardView from '@/components/BoardView';
 import { GameStatus } from '@/components/GameStatus';
@@ -16,6 +17,7 @@ export default function Home() {
       </section>
       <BoardView />
       <SettingsModal />
+      <Toaster />
     </main>
   );
 }
