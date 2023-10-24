@@ -3,16 +3,16 @@
 import React from 'react';
 
 import BoardView from '@/components/BoardView';
-import { GameControls } from '@/components/GameControls';
-import { Scoreboard } from '@/components/Scoreboard';
+import { GameStatus } from '@/components/GameStatus';
+import { SettingsControls } from '@/components/SettingsControls';
 import { SettingsModal } from '@/components/SettingsModal';
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-start gap-y-8 p-8">
       <section className="flex w-96 justify-between">
-        <GameControls />
-        <Scoreboard />
+        <GameStatus />
+        <SettingsControls />
       </section>
       <BoardView />
       <SettingsModal />
