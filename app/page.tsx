@@ -4,9 +4,9 @@ import React from 'react';
 import { Toaster } from 'react-hot-toast';
 
 import BoardView from '@/components/BoardView';
+import { EmojiModal } from '@/components/EmojiModal';
 import { GameStatus } from '@/components/GameStatus';
 import { SettingsControls } from '@/components/SettingsControls';
-import { SettingsModal } from '@/components/SettingsModal';
 
 export default function Home() {
   return (
@@ -16,7 +16,7 @@ export default function Home() {
         <SettingsControls />
       </section>
       <BoardView />
-      <SettingsModal />
+      <EmojiModal />
       <Toaster />
     </main>
   );
