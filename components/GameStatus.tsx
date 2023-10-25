@@ -8,7 +8,7 @@ export const GameStatus = (): JSX.Element => {
   const { currentPlayer, wins } = useGame();
 
   return (
-    <section className="grid grid-cols-[1fr_auto] gap-x-6 text-2xl">
+    <section className="grid grid-cols-[9rem_auto] gap-x-6 text-2xl">
       <div className={`rounded px-2 ${currentPlayer === 1 ? CURRENT_PLAYER_BACKGROUND : ''}`}>
         Player {playerEmoji(1)} {currentPlayer === 1 && CURRENT_PLAYER_ARROW}
       </div>
