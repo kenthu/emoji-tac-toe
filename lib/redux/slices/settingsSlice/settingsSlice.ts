@@ -1,20 +1,22 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
+import { Player } from '@/lib/types';
+
 export interface SettingsSliceState {
-  isModalOpen: boolean;
+  /** For emoji modal: which player's settings we have modal open for */
+  emojiPlayerEditing: Player | null;
 }
 
 const initialState: SettingsSliceState = {
-  isModalOpen: false,
+  emojiPlayerEditing: null,
 };
 
 export const settingsSlice = createSlice({
   name: 'settings',
   initialState,
   reducers: {
-    setModalOpen: (state, action: PayloadAction<boolean>) => {
-      const isModalOpen = action.payload;
-      state.isModalOpen = isModalOpen;
+    setEmojiPlayerEditing: (state, action: PayloadAction<Player | null>) => {
+      state.emojiPlayerEditing = action.payload;
     },
   },
 });

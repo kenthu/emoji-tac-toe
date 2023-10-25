@@ -1,27 +1,32 @@
 import React from 'react';
 
-import { getIsModalOpen } from './selectors';
+import { getEmojiPlayerEditing, getIsEmojiModalOpen } from './selectors';
 import { settingsSlice } from './settingsSlice';
 
 import { useDispatch, useSelector } from '@/lib/redux';
+import { Player } from '@/lib/types';
 
 export const useSettings = () => {
   const dispatch = useDispatch();
 
-  const isModalOpen = useSelector(getIsModalOpen);
+  const emojiPlayerEditing = useSelector(getEmojiPlayerEditing);
+  const isEmojiModalOpen = useSelector(getIsEmojiModalOpen);
 
-  const openSettingsModal = React.useCallback(() => {
-    console.log('inside openSettingsModal');
-    dispatch(settingsSlice.actions.setModalOpen(true));
-  }, [dispatch]);
+  const openEmojiModal = React.useCallback(
+    (player: Player) => {
+      dispatch(settingsSlice.actions.setEmojiPlayerEditing(player));
+    },
+    [dispatch],
+  );
 
-  const closeSettingsModal = React.useCallback(() => {
-    dispatch(settingsSlice.actions.setModalOpen(false));
+  const closeEmojiModal = React.useCallback(() => {
+    dispatch(settingsSlice.actions.setEmojiPlayerEditing(null));
   }, [dispatch]);
 
   return {
-    closeSettingsModal,
-    isModalOpen,
-    openSettingsModal,
+    closeEmojiModal,
+    emojiPlayerEditing,
+    isEmojiModalOpen,
+    openEmojiModal,
   };
 };
