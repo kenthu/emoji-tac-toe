@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getEmojiModalPlayer, getIsEmojiModalOpen } from './selectors';
+import { getEmojiModalPlayer, getIsEmojiModalOpen, getPlayerEmojiMap } from './selectors';
 import { settingsSlice } from './settingsSlice';
 
 import { useDispatch, useSelector } from '@/lib/redux';
@@ -11,6 +11,18 @@ export const useSettings = () => {
 
   const emojiModalPlayer = useSelector(getEmojiModalPlayer);
   const isEmojiModalOpen = useSelector(getIsEmojiModalOpen);
+  const playerEmojiMap = useSelector(getPlayerEmojiMap);
+
+  const getPlayerEmoji = React.useCallback(
+    (player: Player | null): string => {
+      if (player === null) {
+        return '';
+      }
+
+      return playerEmojiMap[player];
+    },
+    [playerEmojiMap],
+  );
 
   const openEmojiModal = React.useCallback(
     (player: Player) => {
@@ -26,6 +38,7 @@ export const useSettings = () => {
   return {
     closeEmojiModal,
     emojiModalPlayer,
+    getPlayerEmoji,
     isEmojiModalOpen,
     openEmojiModal,
   };

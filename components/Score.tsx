@@ -1,4 +1,3 @@
-import { playerEmoji } from '@/lib/emoji';
 import { useGame, useSettings } from '@/lib/redux';
 import { Player } from '@/lib/types';
 
@@ -8,7 +7,7 @@ interface Props {
 
 export const Score = ({ player }: Props): JSX.Element => {
   const { currentPlayer, wins } = useGame();
-  const { openEmojiModal } = useSettings();
+  const { getPlayerEmoji, openEmojiModal } = useSettings();
 
   const backgroundClass =
     player === currentPlayer
@@ -24,7 +23,7 @@ export const Score = ({ player }: Props): JSX.Element => {
         className={`flex h-20 w-20 items-center justify-center rounded-2xl text-6xl ${backgroundClass}`}
         onClick={() => openEmojiModal(player)}
       >
-        {playerEmoji(player)}
+        {getPlayerEmoji(player)}
       </div>
       <div className="flex flex-col py-2">
         <div className="text-5xl">{wins[player]}</div>

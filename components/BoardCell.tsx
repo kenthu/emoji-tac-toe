@@ -1,5 +1,4 @@
-import { playerEmoji } from '@/lib/emoji';
-import { useGame } from '@/lib/redux';
+import { useGame, useSettings } from '@/lib/redux';
 import type { Col, Row } from '@/lib/types';
 
 interface Props {
@@ -9,13 +8,14 @@ interface Props {
 
 export const BoardCell = ({ row, col }: Props): JSX.Element => {
   const { board, handleMove } = useGame();
+  const { getPlayerEmoji } = useSettings();
 
   return (
     <td
       className="h-2/6 w-4/12 border border-solid border-black p-2 text-center text-8xl dark:border-white"
       onClick={() => handleMove(row, col)}
     >
-      {playerEmoji(board[row][col].player)}
+      {getPlayerEmoji(board[row][col].player)}
     </td>
   );
 };

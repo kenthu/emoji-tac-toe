@@ -3,8 +3,7 @@ import toast from 'react-hot-toast';
 import { gameSlice } from './gameSlice';
 import { getAreAllCellsOccupied, getWinner, isCellOccupied } from './selectors';
 
-import { playerEmoji } from '@/lib/emoji';
-import type { ReduxThunkAction } from '@/lib/redux';
+import { getPlayerEmojiMap, type ReduxThunkAction } from '@/lib/redux';
 import type { Col, Player, Row } from '@/lib/types';
 
 const notify = (message: string) => {
@@ -38,7 +37,8 @@ export const handleMove =
     const newState = getState();
     if (getWinner(newState)) {
       dispatch(gameSlice.actions.recordWin(player));
-      notify(`${playerEmoji(player)} has won!`);
+      const playerEmoji = getPlayerEmojiMap(state)[player];
+      notify(`${playerEmoji} has won!`);
     } else if (getAreAllCellsOccupied(newState)) {
       notify('This round is a tie!');
     } else {
