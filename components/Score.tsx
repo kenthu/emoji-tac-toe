@@ -28,7 +28,9 @@ export const Score = ({ player }: Props): JSX.Element => {
       </div>
       <div className="flex flex-col py-2">
         <div className="text-5xl">{wins[player]}</div>
-        <div className="text-xl">{player === currentPlayer && currentPlayerArrow}</div>
+        <div className={`flex text-xl ${isRightSide && 'justify-end'}`}>
+          {player === currentPlayer && currentPlayerArrow}
+        </div>
       </div>
     </div>
   );
