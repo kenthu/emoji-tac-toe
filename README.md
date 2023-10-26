@@ -1,2 +1,4 @@
-# Kitty-tac-toe
-Tic-tac-toe. Eventually, you'll be able to pick different emoji to replace X and O.
+# Emoji-tac-toe
+Tic-tac-toe, but with ability to pick different emoji to replace X and O.
+
+[Demo](https://emoji-tac-toe.vercel.app/)
