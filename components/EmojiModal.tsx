@@ -9,26 +9,23 @@ import { Player } from '@/lib/types';
 // Adapted from https://tailwindui.com/components/application-ui/overlays/modals
 
 export const EmojiModal = (): JSX.Element => {
-  const { isEmojiModalOpen, emojiModalPlayer, closeEmojiModal } = useSettings();
-
-  const [isPickerOpen, setIsPickerOpen] = React.useState(false);
-
-  const closeModalAndCleanUp = React.useCallback(() => {
-    closeEmojiModal();
-    setIsPickerOpen(false);
-  }, [closeEmojiModal]);
-
-  const handleEmojiPicked = React.useCallback((emojiData: EmojiClickData) => {
-    setIsPickerOpen(false);
-    console.log(emojiData.emoji);
-  }, []);
+  const { closeEmojiModal, emojiModalPlayer, getPlayerEmoji, isEmojiModalOpen, setPlayerEmoji } =
+    useSettings();
 
   // We know we won't use this unless the modal is open
   const player = emojiModalPlayer as Player;
 
+  const handleEmojiPicked = React.useCallback(
+    (emojiData: EmojiClickData) => {
+      setPlayerEmoji(player, emojiData.emoji);
+      closeEmojiModal();
+    },
+    [closeEmojiModal, player, setPlayerEmoji],
+  );
+
   return (
     <Transition.Root show={isEmojiModalOpen} as={React.Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={closeModalAndCleanUp}>
+      <Dialog as="div" className="relative z-10" onClose={closeEmojiModal}>
         <Transition.Child
           as={React.Fragment}
           enter="ease-out duration-300"
@@ -54,32 +51,18 @@ export const EmojiModal = (): JSX.Element => {
             >
               <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
                 <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-                  <div className="mt-3 flex flex-col gap-6 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                  <div className="mt-3 flex flex-col gap-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                     <Dialog.Title as="h3" className="text-lg font-semibold leading-6 text-gray-900">
                       Select an emoji to use instead of {EMOJI_DEFAULTS[player]}
                     </Dialog.Title>
-                    <div>
-                      <div
-                        className="my-3 flex h-28 w-28 items-center justify-center rounded-2xl bg-neutral-200 text-8xl outline outline-1 outline-blue-700"
-                        onClick={() => {
-                          setIsPickerOpen(true);
-                        }}
-                      >
-                        🐱
-                      </div>
-                      {isPickerOpen && (
-                        <EmojiPicker
-                          onEmojiClick={handleEmojiPicked}
-                          emojiStyle={EmojiStyle.NATIVE}
-                          lazyLoadEmojis={true}
-                          previewConfig={{
-                            showPreview: false,
-                          }}
-                        />
-                      )}
-                    </div>
-                    <div>
+                    <div className="grid grid-cols-[6rem_auto] text-2xl">
+                      <div className="text-lg">Current</div>
                       <div className="text-lg">Recently used</div>
+                      <div className="my-2 flex justify-start gap-3">
+                        <div className="flex h-12 w-12 items-center justify-center rounded bg-neutral-200 text-4xl">
+                          {getPlayerEmoji(player)}
+                        </div>
+                      </div>
                       <div className="my-2 flex justify-start gap-3">
                         {[0, 1, 2, 3, 4].map((i) => (
                           <div
@@ -91,13 +74,21 @@ export const EmojiModal = (): JSX.Element => {
                         ))}
                       </div>
                     </div>
+                    <EmojiPicker
+                      onEmojiClick={handleEmojiPicked}
+                      emojiStyle={EmojiStyle.NATIVE}
+                      lazyLoadEmojis={true}
+                      previewConfig={{
+                        showPreview: false,
+                      }}
+                    />
                   </div>
                 </div>
                 <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                   <button
                     type="button"
                     className="inline-flex w-full justify-center rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-400 sm:ml-3 sm:w-auto"
-                    onClick={closeModalAndCleanUp}
+                    onClick={closeEmojiModal}
                   >
                     Done
                   </button>

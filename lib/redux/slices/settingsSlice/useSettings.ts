@@ -24,6 +24,13 @@ export const useSettings = () => {
     [playerEmojiMap],
   );
 
+  const setPlayerEmoji = React.useCallback(
+    (player: Player, emoji: string) => {
+      dispatch(settingsSlice.actions.setPlayerEmoji({ player, emoji }));
+    },
+    [dispatch],
+  );
+
   const openEmojiModal = React.useCallback(
     (player: Player) => {
       dispatch(settingsSlice.actions.setEmojiModalPlayer(player));
@@ -41,5 +48,6 @@ export const useSettings = () => {
     getPlayerEmoji,
     isEmojiModalOpen,
     openEmojiModal,
+    setPlayerEmoji,
   };
 };
