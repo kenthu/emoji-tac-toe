@@ -1,12 +1,21 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 
+import { EMOJI_DEFAULTS } from '@/lib/constants';
 import { useSettings } from '@/lib/redux';
+import { Player } from '@/lib/types';
 
 // Adapted from https://tailwindui.com/components/application-ui/overlays/modals
 
+const handleEmojiUpdate = () => {
+  console.log('Emoji updated!');
+};
+
 export const EmojiModal = (): JSX.Element => {
-  const { isEmojiModalOpen, emojiPlayerEditing, closeEmojiModal } = useSettings();
+  const { isEmojiModalOpen, emojiModalPlayer, closeEmojiModal } = useSettings();
+
+  // We know we won't use this unless the modal is open
+  const player = emojiModalPlayer as Player;
 
   return (
     <Transition.Root show={isEmojiModalOpen} as={Fragment}>
@@ -38,9 +47,12 @@ export const EmojiModal = (): JSX.Element => {
                 <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                   <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                     <Dialog.Title as="h3" className="text-lg font-semibold leading-6 text-gray-900">
-                      Select an emoji to use instead of X {emojiPlayerEditing}
+                      Select an emoji to use instead of {EMOJI_DEFAULTS[player]}
                     </Dialog.Title>
-                    <div className="my-3 flex h-28 w-28 items-center justify-center rounded-2xl bg-neutral-200 text-8xl">
+                    <div
+                      className="my-3 flex h-28 w-28 items-center justify-center rounded-2xl bg-neutral-200 text-8xl"
+                      onClick={handleEmojiUpdate}
+                    >
                       🐱
                     </div>
                     <div className="text-lg">Recently used</div>
