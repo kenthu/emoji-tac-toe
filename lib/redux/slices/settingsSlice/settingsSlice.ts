@@ -1,12 +1,12 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 import { EMOJI_DEFAULTS } from '@/lib/constants';
-import { Player } from '@/lib/types';
+import { Player, PlayerEmojiMap } from '@/lib/types';
 
 export interface SettingsSliceState {
   /** Which player we're currently editing in emoji modal. If null, then modal is closed */
   emojiModalPlayer: Player | null;
-  playerEmojiMap: Record<Player, string>;
+  playerEmojiMap: PlayerEmojiMap;
   recentEmoji: Array<string>;
 }
 

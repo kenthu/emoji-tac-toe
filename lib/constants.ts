@@ -1,11 +1,11 @@
-import type { Board, Player, Position } from '@/lib/types';
+import type { Board, Player, PlayerEmojiMap, Position } from '@/lib/types';
 
 export const STARTING_PLAYER = 1;
 
-export const EMOJI_DEFAULTS: Record<Player, string> = {
+export const EMOJI_DEFAULTS: PlayerEmojiMap = Object.freeze({
   1: 'X',
   2: 'O',
-};
+});
 
 export const INITIAL_BOARD: Board = [
   [{ player: null }, { player: null }, { player: null }],

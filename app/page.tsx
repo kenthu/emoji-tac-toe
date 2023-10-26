@@ -8,8 +8,15 @@ import { EmojiModal } from '@/components/EmojiModal';
 import { NextRoundButton } from '@/components/NextRoundButton';
 import { ResetScoresButton } from '@/components/ResetScoresButton';
 import { Score } from '@/components/Score';
+import { useSettings } from '@/lib/redux';
 
 export default function Home() {
+  const { loadSettingsFromLocalStorage } = useSettings();
+
+  React.useEffect(() => {
+    loadSettingsFromLocalStorage();
+  }, [loadSettingsFromLocalStorage]);
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-start gap-y-4 p-8">
       <div className="flex w-96 justify-between">
