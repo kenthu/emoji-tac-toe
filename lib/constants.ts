@@ -13,6 +13,11 @@ export const INITIAL_BOARD: Board = [
   [{ player: null }, { player: null }, { player: null }],
 ];
 
+export const INITIAL_WINS: Record<Player, number> = {
+  1: 0,
+  2: 0,
+};
+
 // prettier-ignore
 export const WIN_PATTERNS: Array<[Position, Position, Position]> = [
   // Rows

@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-import { INITIAL_BOARD, STARTING_PLAYER } from '@/lib/constants';
+import { INITIAL_BOARD, INITIAL_WINS, STARTING_PLAYER } from '@/lib/constants';
 import type { Board, Col, Player, Row } from '@/lib/types';
 
 export interface GameSliceState {
@@ -12,10 +12,7 @@ export interface GameSliceState {
 const initialState: GameSliceState = {
   board: INITIAL_BOARD,
   currentPlayer: STARTING_PLAYER,
-  wins: {
-    1: 0,
-    2: 0,
-  },
+  wins: INITIAL_WINS,
 };
 
 export const gameSlice = createSlice({
@@ -40,6 +37,11 @@ export const gameSlice = createSlice({
     resetBoard: (state) => {
       state.board = INITIAL_BOARD;
       state.currentPlayer = STARTING_PLAYER;
+    },
+    resetScores: (state) => {
+      state.board = INITIAL_BOARD;
+      state.currentPlayer = STARTING_PLAYER;
+      state.wins = INITIAL_WINS;
     },
     togglePlayer: (state) => {
       state.currentPlayer = state.currentPlayer === 1 ? 2 : 1;

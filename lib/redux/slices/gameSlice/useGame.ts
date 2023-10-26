@@ -33,12 +33,17 @@ export const useGame = () => {
     dispatch(gameSlice.actions.resetBoard());
   }, [dispatch]);
 
+  const resetScores = React.useCallback(() => {
+    dispatch(gameSlice.actions.resetScores());
+  }, [dispatch]);
+
   return {
     areAllCellsOccupied,
     board,
     currentPlayer,
     handleMove,
     resetBoard,
+    resetScores,
     winner,
     wins,
   };
