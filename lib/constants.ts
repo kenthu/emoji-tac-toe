@@ -19,7 +19,7 @@ export const INITIAL_WINS: Record<Player, number> = {
 };
 
 // prettier-ignore
-export const WIN_PATTERNS: Array<[Position, Position, Position]> = [
+export const WIN_PATTERNS: [Position, Position, Position][] = [
   // Rows
   [{ row: 0, col: 0}, { row: 0, col: 1 }, { row: 0, col: 2 }],
   [{ row: 1, col: 0}, { row: 1, col: 1 }, { row: 1, col: 2 }],
@@ -32,3 +32,5 @@ export const WIN_PATTERNS: Array<[Position, Position, Position]> = [
   [{ row: 0, col: 0}, { row: 1, col: 1 }, { row: 2, col: 2 }],
   [{ row: 0, col: 2}, { row: 1, col: 1 }, { row: 2, col: 0 }],
 ];
+
+export const NUM_RECENT_EMOJI = 5;

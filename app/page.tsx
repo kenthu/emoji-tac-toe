@@ -11,11 +11,11 @@ import { Score } from '@/components/Score';
 import { useSettings } from '@/lib/redux';
 
 export default function Home() {
-  const { loadSettingsFromLocalStorage } = useSettings();
+  const { loadFromLocalStorage } = useSettings();
 
   React.useEffect(() => {
-    loadSettingsFromLocalStorage();
-  }, [loadSettingsFromLocalStorage]);
+    loadFromLocalStorage();
+  }, [loadFromLocalStorage]);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-start gap-y-4 p-8">

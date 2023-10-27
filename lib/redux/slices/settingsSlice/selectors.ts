@@ -9,3 +9,5 @@ export const getIsEmojiModalOpen = (state: ReduxState): boolean =>
 
 export const getPlayerEmojiMap = (state: ReduxState): PlayerEmojiMap =>
   state.settings.playerEmojiMap;
+
+export const getRecentEmojiList = (state: ReduxState): string[] => state.settings.recentEmojiList;

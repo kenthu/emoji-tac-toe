@@ -1,11 +1,19 @@
 import React from 'react';
 
-import { getEmojiModalPlayer, getIsEmojiModalOpen, getPlayerEmojiMap } from './selectors';
+import {
+  getEmojiModalPlayer,
+  getIsEmojiModalOpen,
+  getPlayerEmojiMap,
+  getRecentEmojiList,
+} from './selectors';
 import { settingsSlice } from './settingsSlice';
 
-import { EMOJI_DEFAULTS } from '@/lib/constants';
-import { getLocalStoragePlayerEmoji, setLocalStoragePlayerEmoji } from '@/lib/localStorage';
-import { useDispatch, useSelector } from '@/lib/redux';
+import {
+  loadFromLocalStorage as loadFromLocalStorageThunk,
+  saveToLocalStorage,
+  useDispatch,
+  useSelector,
+} from '@/lib/redux';
 import { Player } from '@/lib/types';
 
 export const useSettings = () => {
@@ -14,6 +22,7 @@ export const useSettings = () => {
   const emojiModalPlayer = useSelector(getEmojiModalPlayer);
   const isEmojiModalOpen = useSelector(getIsEmojiModalOpen);
   const playerEmojiMap = useSelector(getPlayerEmojiMap);
+  const recentEmojiList = useSelector(getRecentEmojiList);
 
   const getPlayerEmoji = React.useCallback(
     (player: Player | null): string => {
@@ -26,22 +35,21 @@ export const useSettings = () => {
     [playerEmojiMap],
   );
 
+  /**
+   * Handle selection of player emoji. Includes updating recent emoji list and backing up to local
+   * storage.
+   */
   const setPlayerEmoji = React.useCallback(
     (player: Player, emoji: string) => {
       dispatch(settingsSlice.actions.setPlayerEmoji({ player, emoji }));
-      setLocalStoragePlayerEmoji(player, emoji);
+      dispatch(settingsSlice.actions.setRecentEmoji(emoji));
+      dispatch(saveToLocalStorage());
     },
     [dispatch],
   );
 
-  const loadSettingsFromLocalStorage = React.useCallback(() => {
-    const localStoragePlayerEmoji = getLocalStoragePlayerEmoji();
-    const allPlayers: Player[] = [1, 2];
-    for (const player of allPlayers) {
-      const emojiFromLocalStorage = localStoragePlayerEmoji[player];
-      const emojiToUse = emojiFromLocalStorage ?? EMOJI_DEFAULTS[player];
-      dispatch(settingsSlice.actions.setPlayerEmoji({ player, emoji: emojiToUse }));
-    }
+  const loadFromLocalStorage = React.useCallback(() => {
+    dispatch(loadFromLocalStorageThunk());
   }, [dispatch]);
 
   const openEmojiModal = React.useCallback(
@@ -60,8 +68,9 @@ export const useSettings = () => {
     emojiModalPlayer,
     getPlayerEmoji,
     isEmojiModalOpen,
-    loadSettingsFromLocalStorage,
+    loadFromLocalStorage,
     openEmojiModal,
+    recentEmojiList,
     setPlayerEmoji,
   };
 };

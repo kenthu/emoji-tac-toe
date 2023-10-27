@@ -8,18 +8,34 @@ import { Player } from '@/lib/types';
 // Adapted from https://tailwindui.com/components/application-ui/overlays/modals
 
 export const EmojiModal = (): JSX.Element => {
-  const { closeEmojiModal, emojiModalPlayer, getPlayerEmoji, isEmojiModalOpen, setPlayerEmoji } =
-    useSettings();
+  const {
+    closeEmojiModal,
+    emojiModalPlayer,
+    getPlayerEmoji,
+    isEmojiModalOpen,
+    recentEmojiList,
+    setPlayerEmoji,
+  } = useSettings();
 
   // We know we won't use this unless the modal is open
   const player = emojiModalPlayer as Player;
 
-  const handleEmojiPicked = React.useCallback(
-    (emojiData: EmojiClickData) => {
-      setPlayerEmoji(player, emojiData.emoji);
+  const setEmojiAndClose = React.useCallback(
+    (emoji: string) => {
+      if (!emoji) {
+        return;
+      }
+      setPlayerEmoji(player, emoji);
       closeEmojiModal();
     },
     [closeEmojiModal, player, setPlayerEmoji],
+  );
+
+  const handlePickerClick = React.useCallback(
+    (emojiData: EmojiClickData) => {
+      setEmojiAndClose(emojiData.emoji);
+    },
+    [setEmojiAndClose],
   );
 
   return (
@@ -67,14 +83,15 @@ export const EmojiModal = (): JSX.Element => {
                           <div
                             key={i}
                             className="flex h-12 w-12 items-center justify-center rounded bg-neutral-200 text-4xl"
+                            onClick={() => setEmojiAndClose(recentEmojiList[i])}
                           >
-                            🐱
+                            {recentEmojiList[i]}
                           </div>
                         ))}
                       </div>
                     </div>
                     <EmojiPicker
-                      onEmojiClick={handleEmojiPicked}
+                      onEmojiClick={handlePickerClick}
                       emojiStyle={EmojiStyle.NATIVE}
                       lazyLoadEmojis={true}
                       previewConfig={{
