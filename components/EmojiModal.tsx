@@ -2,7 +2,6 @@ import { Dialog, Transition } from '@headlessui/react';
 import EmojiPicker, { EmojiClickData, EmojiStyle } from 'emoji-picker-react';
 import React from 'react';
 
-import { EMOJI_DEFAULTS } from '@/lib/constants';
 import { useSettings } from '@/lib/redux';
 import { Player } from '@/lib/types';
 
@@ -53,7 +52,7 @@ export const EmojiModal = (): JSX.Element => {
                 <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                   <div className="mt-3 flex flex-col gap-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                     <Dialog.Title as="h3" className="text-lg font-semibold leading-6 text-gray-900">
-                      Select an emoji to use instead of {EMOJI_DEFAULTS[player]}
+                      Select an emoji to use on the grid
                     </Dialog.Title>
                     <div className="grid grid-cols-[6rem_auto] text-2xl">
                       <div className="text-lg">Current</div>

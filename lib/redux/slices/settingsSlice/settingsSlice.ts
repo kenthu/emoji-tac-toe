@@ -1,6 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-import { EMOJI_DEFAULTS } from '@/lib/constants';
 import { Player, PlayerEmojiMap } from '@/lib/types';
 
 export interface SettingsSliceState {
@@ -12,7 +11,12 @@ export interface SettingsSliceState {
 
 const initialState: SettingsSliceState = {
   emojiModalPlayer: null,
-  playerEmojiMap: EMOJI_DEFAULTS,
+  // Start with blank emoji, so we don't see a flash of X and O while we wait for the emoji settings
+  // to load from local storage.
+  playerEmojiMap: {
+    1: '',
+    2: '',
+  },
   recentEmoji: [],
 };
 

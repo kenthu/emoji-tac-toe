@@ -3,6 +3,7 @@ import React from 'react';
 import { getEmojiModalPlayer, getIsEmojiModalOpen, getPlayerEmojiMap } from './selectors';
 import { settingsSlice } from './settingsSlice';
 
+import { EMOJI_DEFAULTS } from '@/lib/constants';
 import { getLocalStoragePlayerEmoji, setLocalStoragePlayerEmoji } from '@/lib/localStorage';
 import { useDispatch, useSelector } from '@/lib/redux';
 import { Player } from '@/lib/types';
@@ -35,13 +36,13 @@ export const useSettings = () => {
 
   const loadSettingsFromLocalStorage = React.useCallback(() => {
     const localStoragePlayerEmoji = getLocalStoragePlayerEmoji();
-    if (localStoragePlayerEmoji[1]) {
-      setPlayerEmoji(1, localStoragePlayerEmoji[1]);
+    const allPlayers: Player[] = [1, 2];
+    for (const player of allPlayers) {
+      const emojiFromLocalStorage = localStoragePlayerEmoji[player];
+      const emojiToUse = emojiFromLocalStorage ?? EMOJI_DEFAULTS[player];
+      dispatch(settingsSlice.actions.setPlayerEmoji({ player, emoji: emojiToUse }));
     }
-    if (localStoragePlayerEmoji[2]) {
-      setPlayerEmoji(2, localStoragePlayerEmoji[2]);
-    }
-  }, [setPlayerEmoji]);
+  }, [dispatch]);
 
   const openEmojiModal = React.useCallback(
     (player: Player) => {
