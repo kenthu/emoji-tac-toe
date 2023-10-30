@@ -1,5 +1,6 @@
+import data from '@emoji-mart/data';
+import Picker from '@emoji-mart/react';
 import { Dialog, Transition } from '@headlessui/react';
-import EmojiPicker, { EmojiClickData, EmojiStyle } from 'emoji-picker-react';
 import React from 'react';
 
 import { EMOJI_DEFAULTS } from '@/lib/constants';
@@ -7,6 +8,11 @@ import { useSettings } from '@/lib/redux';
 import { Player } from '@/lib/types';
 
 // Adapted from https://tailwindui.com/components/application-ui/overlays/modals
+
+/** Guess at type of argument passed into emoji-mart's onEmojiSelect handler  */
+interface EmojiData {
+  native: string;
+}
 
 export const EmojiModal = (): JSX.Element => {
   const {
@@ -33,8 +39,8 @@ export const EmojiModal = (): JSX.Element => {
   );
 
   const handlePickerClick = React.useCallback(
-    (emojiData: EmojiClickData) => {
-      setEmojiAndClose(emojiData.emoji);
+    (emojiData: EmojiData) => {
+      setEmojiAndClose(emojiData.native);
     },
     [setEmojiAndClose],
   );
@@ -80,26 +86,23 @@ export const EmojiModal = (): JSX.Element => {
                         </div>
                       </div>
                       <div className="my-2 flex justify-start gap-3">
-                        {[0, 1, 2, 3, 4].map((i) => (
+                        {[0, 1, 2, 3, 4].map((recentEmojiIndex) => (
                           <div
-                            key={i}
+                            key={recentEmojiIndex}
                             className="flex h-8 w-8 items-center justify-center rounded bg-neutral-200 text-2xl"
-                            onClick={() => setEmojiAndClose(recentEmojiList[i])}
+                            onClick={() => setEmojiAndClose(recentEmojiList[recentEmojiIndex])}
                           >
-                            {recentEmojiList[i]}
+                            {recentEmojiList[recentEmojiIndex]}
                           </div>
                         ))}
                       </div>
                     </div>
-                    <EmojiPicker
-                      onEmojiClick={handlePickerClick}
-                      emojiStyle={EmojiStyle.NATIVE}
-                      lazyLoadEmojis={true}
-                      previewConfig={{
-                        showPreview: false,
-                      }}
-                      width={305}
-                      height={360}
+                    <Picker
+                      data={data}
+                      onEmojiSelect={handlePickerClick}
+                      maxFrequentRows={1}
+                      previewPosition="none"
+                      perLine={8}
                     />
                   </div>
                 </div>

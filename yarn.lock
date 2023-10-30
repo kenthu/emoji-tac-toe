@@ -26,6 +26,16 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
+"@emoji-mart/data@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@emoji-mart/data/-/data-1.1.2.tgz#777c976f8f143df47cbb23a7077c9ca9fe5fc513"
+  integrity sha512-1HP8BxD2azjqWJvxIaWAMyTySeZY0Osr83ukYjltPVkNXeJvTz7yDrPLBtnrD5uqJ3tg4CcLuuBW09wahqL/fg==
+
+"@emoji-mart/react@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@emoji-mart/react/-/react-1.1.1.tgz#ddad52f93a25baf31c5383c3e7e4c6e05554312a"
+  integrity sha512-NMlFNeWgv1//uPsvLxvGQoIerPuVdXwK/EUek8OOkJ6wVOWPUizRBJU0hDqWZCOROVpfBgCemaC3m6jDOXi03g==
+
 "@esbuild/android-arm64@0.18.20":
   version "0.18.20"
   resolved "https://registry.yarnpkg.com/@esbuild/android-arm64/-/android-arm64-0.18.20.tgz#984b4f9c8d0377443cc2dfcef266d02244593622"
@@ -1061,10 +1071,10 @@ electron-to-chromium@^1.4.535:
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.563.tgz#dabb424202754c1fed2d2938ff564b23d3bbf0d3"
   integrity sha512-dg5gj5qOgfZNkPNeyKBZQAQitIQ/xwfIDmEQJHCbXaD9ebTZxwJXUsDYcBlAvZGZLi+/354l35J1wkmP6CqYaw==
 
-emoji-picker-react@^4.5.6:
-  version "4.5.6"
-  resolved "https://registry.yarnpkg.com/emoji-picker-react/-/emoji-picker-react-4.5.6.tgz#74f2a2aa906054c152867195c9eaf6bcdd7eb22f"
-  integrity sha512-1dLsV04WQifRpD92/wHhgsJbNg7FQoHWPaiDyU+AEtmq3umUhVTs/8ZzhdoU2HvThg3hK3hRcBn3nRJHjBjWkQ==
+emoji-mart@^5.5.2:
+  version "5.5.2"
+  resolved "https://registry.yarnpkg.com/emoji-mart/-/emoji-mart-5.5.2.tgz#3ddbaf053139cf4aa217650078bc1c50ca8381af"
+  integrity sha512-Sqc/nso4cjxhOwWJsp9xkVm8OF5c+mJLZJFoFfzRuKO+yWiN7K8c96xmtughYb0d/fZ8UC6cLIQ/p4BR6Pv3/A==
 
 emoji-regex@^9.2.2:
   version "9.2.2"
