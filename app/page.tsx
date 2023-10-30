@@ -18,13 +18,13 @@ export default function Home() {
   }, [loadFromLocalStorage]);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-start gap-y-4 p-8">
-      <div className="flex w-96 justify-between">
+    <main className="flex min-h-screen flex-col items-center justify-start gap-y-3 p-7">
+      <div className="flex w-80 justify-between">
         <Score player={1} />
         <Score player={2} />
       </div>
       <div className="flex flex-col items-center justify-between">
-        <div className="flex w-96 justify-between">
+        <div className="flex w-80 justify-between">
           <NextRoundButton />
           <ResetScoresButton />
         </div>

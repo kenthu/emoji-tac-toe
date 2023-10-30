@@ -2,6 +2,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import EmojiPicker, { EmojiClickData, EmojiStyle } from 'emoji-picker-react';
 import React from 'react';
 
+import { EMOJI_DEFAULTS } from '@/lib/constants';
 import { useSettings } from '@/lib/redux';
 import { Player } from '@/lib/types';
 
@@ -66,15 +67,15 @@ export const EmojiModal = (): JSX.Element => {
             >
               <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
                 <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-                  <div className="mt-3 flex flex-col gap-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                  <div className="mt-3 flex flex-col gap-3 text-left sm:ml-4 sm:mt-0">
                     <Dialog.Title as="h3" className="text-lg font-semibold leading-6 text-gray-900">
                       Select an emoji to use on the grid
                     </Dialog.Title>
-                    <div className="grid grid-cols-[6rem_auto] text-2xl">
-                      <div className="text-lg">Current</div>
-                      <div className="text-lg">Recently used</div>
+                    <div className="grid grid-cols-[6rem_auto]">
+                      <div className="text-left text-base">Current</div>
+                      <div className="text-left text-base">Recently used</div>
                       <div className="my-2 flex justify-start gap-3">
-                        <div className="flex h-12 w-12 items-center justify-center rounded bg-neutral-200 text-4xl">
+                        <div className="flex h-8 w-8 items-center justify-center rounded bg-neutral-200 text-2xl">
                           {getPlayerEmoji(player)}
                         </div>
                       </div>
@@ -82,7 +83,7 @@ export const EmojiModal = (): JSX.Element => {
                         {[0, 1, 2, 3, 4].map((i) => (
                           <div
                             key={i}
-                            className="flex h-12 w-12 items-center justify-center rounded bg-neutral-200 text-4xl"
+                            className="flex h-8 w-8 items-center justify-center rounded bg-neutral-200 text-2xl"
                             onClick={() => setEmojiAndClose(recentEmojiList[i])}
                           >
                             {recentEmojiList[i]}
@@ -97,6 +98,8 @@ export const EmojiModal = (): JSX.Element => {
                       previewConfig={{
                         showPreview: false,
                       }}
+                      width={305}
+                      height={360}
                     />
                   </div>
                 </div>
@@ -107,6 +110,13 @@ export const EmojiModal = (): JSX.Element => {
                     onClick={closeEmojiModal}
                   >
                     Done
+                  </button>
+                  <button
+                    type="button"
+                    className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+                    onClick={() => setEmojiAndClose(EMOJI_DEFAULTS[player])}
+                  >
+                    Reset to {EMOJI_DEFAULTS[player]}
                   </button>
                 </div>
               </Dialog.Panel>

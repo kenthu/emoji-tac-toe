@@ -9,7 +9,7 @@ import type { Col, Player, Row } from '@/lib/types';
 const notify = (message: string) => {
   toast(message, {
     position: 'bottom-center',
-    className: 'text-3xl',
+    className: 'text-base',
     duration: 5000,
   });
 };
