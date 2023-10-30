@@ -12,7 +12,7 @@ export const BoardCell = ({ row, col }: Props): JSX.Element => {
 
   return (
     <td
-      className="h-2/6 w-4/12 border border-solid border-black text-center text-7xl dark:border-white"
+      className="h-2/6 w-4/12 border border-solid border-black text-center text-7xl dark:border-white sm:text-8xl"
       onClick={() => handleMove(row, col)}
     >
       {getPlayerEmoji(board[row][col].player)}

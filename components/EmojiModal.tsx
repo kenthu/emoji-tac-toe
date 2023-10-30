@@ -78,10 +78,10 @@ export const EmojiModal = (): JSX.Element => {
                       Select an emoji to use on the grid
                     </Dialog.Title>
                     <div className="grid grid-cols-[6rem_auto]">
-                      <div className="text-left text-base">Current</div>
-                      <div className="text-left text-base">Recently used</div>
+                      <div className="text-left text-base sm:text-lg">Current</div>
+                      <div className="text-left text-base sm:text-lg">Recently used</div>
                       <div className="my-2 flex justify-start gap-3">
-                        <div className="flex h-8 w-8 items-center justify-center rounded bg-neutral-200 text-2xl">
+                        <div className="flex h-8 w-8 items-center justify-center rounded bg-neutral-200 text-2xl sm:h-12 sm:w-12 sm:text-4xl">
                           {getPlayerEmoji(player)}
                         </div>
                       </div>
@@ -89,7 +89,7 @@ export const EmojiModal = (): JSX.Element => {
                         {[0, 1, 2, 3, 4].map((recentEmojiIndex) => (
                           <div
                             key={recentEmojiIndex}
-                            className="flex h-8 w-8 items-center justify-center rounded bg-neutral-200 text-2xl"
+                            className="flex h-8 w-8 items-center justify-center rounded bg-neutral-200 text-2xl sm:h-12 sm:w-12 sm:text-4xl"
                             onClick={() => setEmojiAndClose(recentEmojiList[recentEmojiIndex])}
                           >
                             {recentEmojiList[recentEmojiIndex]}
@@ -102,7 +102,7 @@ export const EmojiModal = (): JSX.Element => {
                       onEmojiSelect={handlePickerClick}
                       maxFrequentRows={1}
                       previewPosition="none"
-                      perLine={8}
+                      dynamicWidth={true}
                     />
                   </div>
                 </div>
