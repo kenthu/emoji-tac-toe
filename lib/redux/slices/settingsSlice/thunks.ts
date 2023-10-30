@@ -9,12 +9,7 @@ const RECENT_EMOJI_LIST_KEY = 'recent-emoji-list';
 
 const emojiPlayerKey = (player: Player): string => `emoji-player-${player}`;
 
-// export const getLocalStoragePlayerEmoji = (): Partial<PlayerEmojiMap> => ({
-//   1: localStorage.getItem(emojiPlayerKey(1)) ?? undefined,
-//   2: localStorage.getItem(emojiPlayerKey(2)) ?? undefined,
-// });
-
-export const saveToLocalStorage = (): ReduxThunkAction => (dispatch, getState) => {
+export const saveToLocalStorage = (): ReduxThunkAction => (_, getState) => {
   const state = getState();
   const playerEmojiMap = getPlayerEmojiMap(state);
   const recentEmojiList = getRecentEmojiList(state);
@@ -24,7 +19,7 @@ export const saveToLocalStorage = (): ReduxThunkAction => (dispatch, getState) =
   localStorage.setItem(RECENT_EMOJI_LIST_KEY, JSON.stringify(recentEmojiList));
 };
 
-export const loadFromLocalStorage = (): ReduxThunkAction => (dispatch, getState) => {
+export const loadFromLocalStorage = (): ReduxThunkAction => (dispatch) => {
   // Load playerEmojiMap
   const allPlayers: Player[] = [1, 2];
   for (const player of allPlayers) {
@@ -39,9 +34,3 @@ export const loadFromLocalStorage = (): ReduxThunkAction => (dispatch, getState)
     dispatch(settingsSlice.actions.setRecentEmojiList(JSON.parse(recentEmojiList)));
   }
 };
-
-// const x = {
-//   p1: localStorage['emoji-player-1'],
-//   p2: localStorage['emoji-player-2'],
-//   list: localStorage['recent-emoji-list'],
-// };
